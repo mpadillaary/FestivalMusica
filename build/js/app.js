@@ -4,6 +4,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function iniciarApp() {
   crearGaleria();
+  scrollNav();
+}
+
+function scrollNav() {
+  const enlaces = document.querySelectorAll('.navegacion-principal a');
+
+  enlaces.forEach(enlace => {
+    enlace.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const seccionScroll = e.target.attributes.href.value;
+      const seccion = document.querySelector(seccionScroll);
+
+      seccion.scrollIntoView({behavior: 'smooth'});
+    });    
+  });
 }
 
 function crearGaleria() {
@@ -38,8 +54,8 @@ function mostrarImagen(id) {
   overlay.appendChild(imagen);
   overlay.classList.add("overlay");
   overlay.onclick = function () {
-    const body = document.querySelector('body');
-    body.classList.remove('fijar-body');
+    const body = document.querySelector("body");
+    body.classList.remove("fijar-body");
     overlay.remove();
   };
   //**Boton para cerrar el Modal */
